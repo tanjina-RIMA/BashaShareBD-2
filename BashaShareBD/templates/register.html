@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Create Your Account</h2>
+
+<!-- SHOW ERROR / SUCCESS MESSAGES -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+
+            <p id="flash-message">
+                <strong>{{ message }}</strong>
+            </p>
+
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+
+<form method="POST">
+
+    <label>Full Name:</label>
+    <input type="text" name="name" id="name" required>
+    <br><br>
+
+    <label>Email:</label>
+    <input type="email" name="email" id="email" required>
+    <br><br>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" id="phone" required>
+    <br><br>
+
+    <label>Password:</label>
+    <input type="password" name="password" id="password" required>
+    <br><br>
+
+   <button type="submit" id="register-btn">
+    Register
+   </button>
+
+</form>
+
+{% endblock %}

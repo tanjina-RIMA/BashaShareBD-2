@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - BashaShare BD</title>
+</head>
+
+<body>
+
+<h1>Admin Panel</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<hr>
+
+<h2>Pending Listings</h2>
+
+{% if listings %}
+
+    {% for listing in listings %}
+
+        <div>
+
+            <h3>{{ listing.title }}</h3>
+
+            <p>
+                Location: {{ listing.location }}
+            </p>
+
+            <p>
+                Rent: {{ listing.rent }} BDT/month
+            </p>
+
+            <p>
+                {{ listing.description }}
+            </p>
+
+            <a href="{{ url_for('approve_listing', listing_id=listing.id) }}">
+                Approve
+            </a>
+
+            |
+
+            <a href="{{ url_for('reject_listing', listing_id=listing.id) }}">
+                Reject
+            </a>
+
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No pending listings.</p>
+
+{% endif %}
+
+<a href="{{ url_for('dashboard') }}">
+    Back to Dashboard
+</a>
+
+</body>
+</html>

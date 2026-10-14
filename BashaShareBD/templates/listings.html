@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listings - BashaShare BD</title>
+</head>
+
+<body>
+
+<h1>Available Accommodations</h1>
+
+<form method="GET">
+
+    <input
+        type="text"
+        name="search"
+        id="search"
+        placeholder="Search by location"
+        value="{{ search }}"
+    >
+
+    <button type="submit" id="search-btn">
+        Search
+    </button>
+
+</form>
+
+<hr>
+
+{% if listings %}
+
+    {% for listing in listings %}
+
+        <div>
+
+            <h2>{{ listing.title }}</h2>
+
+            <p>
+                <strong>Location:</strong>
+                {{ listing.location }}
+            </p>
+
+            <p>
+                <strong>Rent:</strong>
+                {{ listing.rent }} BDT/month
+            </p>
+
+            <p>
+                {{ listing.description }}
+            </p>
+
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No approved listings found.</p>
+
+{% endif %}
+
+<a href="{{ url_for('add_listing') }}">
+    Add Listing
+</a>
+
+<br><br>
+
+<a href="{{ url_for('dashboard') }}">
+    Dashboard
+</a>
+
+</body>
+</html>
